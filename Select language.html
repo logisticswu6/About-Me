@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Select language</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f4f4f4;
+    }
+    .selector {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 350px;
+      margin: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    label, select {
+      font-size: 1.1em;
+    }
+    select {
+      padding: 5px 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-top: 8px;
+    }
+    button {
+      margin-top: 18px;
+      padding: 8px 22px;
+      border: none;
+      border-radius: 5px;
+      background: #4CAF50;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #388E3C;
+    }
+  </style>
+</head>
+<body>
+  <div class="selector">
+    <form id="langForm">
+      <label for="language">Select language/選擇語言</label><br>
+      <select id="language" name="language">
+        <option value="About Me-EN.html">English</option>
+        <option value="About Me-CN.html">中文（繁體）</option>
+        <option value="About Me-zh.html">中文（簡體）</option>
+        <option value="About Me-jp.html">日本語</option>
+        <option value="About Me-india.html">भारत गणराज्य</option>
+        <option value="About Me-Bahasa Indonesia.html">Indonesia</option>
+
+
+        <!-- 你可以在這裡增加其他語言選項 -->
+      </select>
+      <br>
+      <button type="submit">Go/前往/行く/जाना/pergi</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('langForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var selected = document.getElementById('language').value;
+      window.location.href = selected;
+    });
+  </script>
+</body>
+</html>
