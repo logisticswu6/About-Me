@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我</title>
+    <!-- 新增 Favicon 图片 -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/dVXmfbrw/About-Me.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 样式内容同原始文件，未做变动 */
+    </style>
+    <script>
+        // 脚本内容同原始文件，未做变动
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideUpIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUpOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-50px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes flipIn {
+            0% { opacity: 0; transform: perspective(400px) rotateY(90deg); }
+            100% { opacity: 1; transform: perspective(400px) rotateY(0deg); }
+        }
+        
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            70% { opacity: 1; transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes cardEnter {
+            0% { opacity: 0; transform: translateY(50px) scale(0.8); }
+            60% { opacity: 1; transform: translateY(-10px) scale(1.05); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        @keyframes cardLeave {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            20% { opacity: 1; transform: translateY(-10px) scale(1.05); }
+            100% { opacity: 0; transform: translateY(-50px) scale(0.8); }  
+        }
+        
+        body {
+            background-color: #0a1428; /* 深藍色背景 */
+            color: #e0e0e0; /* 淺灰色文字，提高可讀性 */
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden; /* 防止水平滾動 */
+        }
+        
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0f2b4a 0%, #1e5799 50%, #207cca 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 150, 255, 0.3);
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+        
+        header > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeIn 1.2s ease-out 0.3s both;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            animation: fadeIn 1.2s ease-out 0.6s both;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            animation: pulse 3s infinite ease-in-out;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        section {
+            background: rgba(25, 35, 60, 0.8); /* 半透明深藍色背景 */
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 150, 255, 0.15); /* 藍色陰影 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
+            border: 1px solid rgba(100, 200, 255, 0.1); /* 淡藍色邊框 */
+            backdrop-filter: blur(10px); /* 背景模糊效果 */
+        }
+        
+        section.hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUpOut 0.8s ease forwards;
+        }
+        
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideUpIn 0.8s ease forwards;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #50a0ff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(100, 200, 255, 0.2);
+            text-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #a0d0ff;
+            font-weight: 300;
+            text-shadow: 0 0 5px rgba(0, 150, 255, 0.3);
+        }
+        
+        .about-text {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #d0e0ff;
+            text-shadow: 0 0 2px rgba(0, 100, 255, 0.2);
+            line-height: 1.8;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .skill {
+            background: rgba(30, 40, 70, 0.7);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #a0e0ff;
+            transition: all 0.3s ease;
+            animation: cardEnter 0.6s ease-out;
+            animation-fill-mode: both;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            transform-origin: center;
+            perspective: 1000px;
+            backface-visibility: hidden;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 150, 255, 0.1);
+            text-shadow: 0 0 5px rgba(0, 150, 255, 0.5);
+        }
+        
+        .skill.leaving {
+            animation: cardLeave 0.5s ease-in forwards;
+        }
+        
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .skill:hover {
+            background: linear-gradient(45deg, #0a2d5e, #0088ff);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 150, 255, 0.5), 0 0 15px rgba(0, 200, 255, 0.3);
+            text-decoration: none;
+            border-color: rgba(100, 200, 255, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        .skills-container .skill:nth-child(1) { animation-delay: 0.1s; animation-name: flipIn; }
+        .skills-container .skill:nth-child(2) { animation-delay: 0.2s; animation-name: popIn; }
+        .skills-container .skill:nth-child(3) { animation-delay: 0.3s; animation-name: bounceIn; }
+        .skills-container .skill:nth-child(4) { animation-delay: 0.4s; animation-name: flipIn; }
+        .skills-container .skill:nth-child(5) { animation-delay: 0.5s; animation-name: popIn; }
+        .skills-container .skill:nth-child(6) { animation-delay: 0.6s; animation-name: bounceIn; }
+        .skills-container .skill:nth-child(7) { animation-delay: 0.7s; animation-name: flipIn; }
+        .skills-container .skill:nth-child(8) { animation-delay: 0.8s; animation-name: popIn; }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        
+        .timeline-item {
+            padding: 20px 30px;
+            position: relative;
+            background-color: rgba(20, 40, 80, 0.5);
+            width: 100%;
+            animation: slideInLeft 0.8s ease-out;
+            animation-fill-mode: both;
+            border-left: 2px solid rgba(0, 150, 255, 0.5);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0, 150, 255, 0.15);
+            backdrop-filter: blur(5px);
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(45deg, #0a2d5e, #0088ff);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            left: -8px;
+            box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+            animation: pulseDot 3s infinite alternate;
+        }
+        
+        @keyframes pulseDot {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 150, 255, 0.5); }
+            100% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0, 200, 255, 0.7); }
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #50a0ff;
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px rgba(0, 150, 255, 0.3);
+        }
+        
+        .timeline-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #a0d0ff;
+            text-shadow: 0 0 5px rgba(0, 150, 255, 0.3);
+        }
+        
+        .timeline-item p {
+            margin: 0 0 5px 0;
+            color: #c0e0ff;
+            font-size: 0.95rem;
+            text-shadow: 0 0 2px rgba(0, 100, 255, 0.2);
+            line-height: 1.6;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 20px auto 0;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            width: 100%;
+            animation: cardEnter 0.8s ease-out;
+            animation-fill-mode: both;
+            background-color: rgba(20, 40, 80, 0.7);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 150, 255, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .contact-item.leaving {
+            animation: cardLeave 0.5s ease-in forwards;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 150, 255, 0.3), 0 0 15px rgba(0, 200, 255, 0.2);
+            background: linear-gradient(to right, rgba(30, 50, 100, 0.8), rgba(20, 60, 120, 0.8));
+            border-color: rgba(100, 200, 255, 0.5);
+        }
+        
+        .contact-link {
+            color: #70c0ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-shadow: 0 0 5px rgba(0, 150, 255, 0.3);
+        }
+        
+        .contact-link:hover {
+            color: #ffffff;
+            background-color: rgba(0, 120, 255, 0.7);
+            text-decoration: none;
+            box-shadow: 0 3px 15px rgba(0, 150, 255, 0.5), 0 0 5px rgba(0, 200, 255, 0.3);
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        .contact-item:nth-child(1) { animation-delay: 0.1s; }
+        .contact-item:nth-child(2) { animation-delay: 0.2s; }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #0a2d5e, #0088ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            color: #ffffff;
+            box-shadow: 0 3px 15px rgba(0, 150, 255, 0.3), 0 0 5px rgba(0, 200, 255, 0.5);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+        }
+        
+        .contact-item:hover .contact-icon {
+            background: linear-gradient(45deg, #0088ff, #00c0ff);
+            color: white;
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 5px 20px rgba(0, 150, 255, 0.5), 0 0 10px rgba(0, 200, 255, 0.7);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #70a0d0;
+            font-size: 0.9rem;
+            text-shadow: 0 0 5px rgba(0, 100, 255, 0.2);
+            border-top: 1px solid rgba(100, 200, 255, 0.1);
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .contact-item {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+    <script>
+        // 當頁面載入完成後執行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 粒子背景效果
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            
+            // 設置畫布大小
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // 粒子設置
+            const particlesArray = [];
+            const numberOfParticles = 150; // 增加粒子數量
+            
+            // 調整畫布大小
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                // 重新初始化粒子以適應新的畫布大小
+                particlesArray.length = 0;
+                init();
+            });
+            
+            // 粒子類 - 科技感版本
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1; // 更小的粒子
+                    this.baseSize = this.size; // 保存原始大小用於脈衝效果
+                    this.speedX = Math.random() * 1 - 0.5; // 更慢的移動
+                    this.speedY = Math.random() * 1 - 0.5;
+                    // 科技藍色調
+                    this.color = `rgba(${Math.random() * 30 + 30}, ${Math.random() * 150 + 100}, ${Math.random() * 100 + 155}, ${Math.random() * 0.3 + 0.2})`;
+                    this.pulseSpeed = Math.random() * 0.02 + 0.01; // 脈衝速度
+                    this.angle = 0; // 用於脈衝效果
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    // 脈衝效果
+                    this.angle += this.pulseSpeed;
+                    this.size = this.baseSize + Math.sin(this.angle) * 0.5;
+                    
+                    // 邊界檢查 - 循環而不是反彈
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                    if (this.y > canvas.height) this.y = 0;
+                }
+                
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // 添加發光效果
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = this.color;
+                }
+            }
+            
+            // 創建粒子
+            function init() {
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particlesArray.push(new Particle());
+                }
+            }
+            
+            // 連接附近的粒子
+            function connectParticles() {
+                const maxDistance = 150; // 最大連接距離
+                
+                for (let i = 0; i < particlesArray.length; i++) {
+                    for (let j = i; j < particlesArray.length; j++) {
+                        const dx = particlesArray[i].x - particlesArray[j].x;
+                        const dy = particlesArray[i].y - particlesArray[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < maxDistance) {
+                            // 距離越近，線條越不透明
+                            const opacity = 1 - (distance / maxDistance);
+                            ctx.strokeStyle = `rgba(100, 200, 255, ${opacity * 0.5})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            // 動畫循環
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // 添加背景漸變
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                gradient.addColorStop(0, 'rgba(10, 20, 40, 0.8)');
+                gradient.addColorStop(1, 'rgba(5, 15, 30, 0.9)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // 重置陰影效果，避免影響其他繪圖
+                ctx.shadowBlur = 0;
+                
+                // 先連接粒子
+                connectParticles();
+                
+                // 然後繪製和更新粒子
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            init();
+            animate();
+            // 滾動動畫效果
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // 當元素進入視窗
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        entry.target.classList.remove('hidden');
+                        entry.target.classList.remove('leaving');
+                        
+                        // 為卡片元素添加進入動畫
+                        if (entry.target.classList.contains('skill') || entry.target.classList.contains('contact-item')) {
+                            entry.target.style.animationName = 'cardEnter';
+                        }
+                    } 
+                    // 當元素離開視窗
+                    else {
+                        // 先添加離開動畫，然後再添加hidden類
+                        if (entry.target.classList.contains('skill') || entry.target.classList.contains('contact-item')) {
+                            entry.target.classList.add('leaving');
+                            // 等待動畫完成後再隱藏
+                            setTimeout(() => {
+                                entry.target.classList.remove('show');
+                                entry.target.classList.add('hidden');
+                            }, 500); // 與cardLeave動畫時間相同
+                        } else {
+                            entry.target.classList.remove('show');
+                            entry.target.classList.add('hidden');
+                        }
+                    }
+                });
+            }, { 
+                // 設置較低的閾值，使動畫更早觸發
+                threshold: 0.05, 
+                // 設置根邊距，使元素在進入視窗前就開始動畫
+                rootMargin: '-50px 0px'
+            });
+            
+            // 監視所有section元素
+            document.querySelectorAll('section').forEach((section, index) => {
+                // 初始狀態設為隱藏
+                section.classList.add('hidden');
+                // 設置不同的延遲時間，創造階梯式動畫效果
+                section.style.animationDelay = `${index * 0.2}s`;
+                observer.observe(section);
+            });
+            
+            // 監視所有技能卡片元素
+            document.querySelectorAll('.skill').forEach((skill, index) => {
+                // 設置不同的延遲時間，創造階梯式動畫效果
+                skill.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(skill);
+            });
+            
+            // 監視所有聯繫卡片元素
+            document.querySelectorAll('.contact-item').forEach((item, index) => {
+                // 設置不同的延遲時間，創造階梯式動畫效果
+                item.style.animationDelay = `${index * 0.2}s`;
+                observer.observe(item);
+            });
+            
+            // 添加滑鼠移動效果到標題
+            const header = document.querySelector('header');
+            header.addEventListener('mousemove', (e) => {
+                const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
+                const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
+                
+                const title = document.querySelector('h1');
+                const subtitle = document.querySelector('.subtitle');
+                
+                title.style.transform = `translate(${xPos}px, ${yPos}px)`;
+                subtitle.style.transform = `translate(${xPos * 0.5}px, ${yPos * 0.5}px)`;
+            });
+            
+            // 打字機效果
+            function typeWriter(element, text, speed = 50, callback) {
+                let i = 0;
+                element.textContent = '';
+                
+                function typing() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typing, speed);
+                    } else if (callback) {
+                        callback();
+                    }
+                }
+                
+                typing();
+            }
+            
+            // 應用打字機效果到標題
+            const originalTitle = document.querySelector('h1').textContent;
+            const originalSubtitle = document.querySelector('.subtitle').textContent;
+            
+            setTimeout(() => {
+                typeWriter(document.querySelector('h1'), originalTitle, 100, () => {
+                    typeWriter(document.querySelector('.subtitle'), originalSubtitle, 50);
+                });
+            }, 500);
+            
+            // 添加卡片懸停和點擊效果
+            document.querySelectorAll('.skill, .contact-item').forEach(card => {
+                card.addEventListener('mouseover', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.1) rotate(3deg)';
+                });
+                
+                card.addEventListener('mouseout', function() {
+                    this.style.transform = '';
+                });
+                
+                // 添加點擊效果動畫
+                card.addEventListener('click', function(e) {
+                    // 添加點擊時的視覺反饋
+                    this.style.transform = 'scale(0.95)';
+                    
+                    // 創建波紋效果
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    this.appendChild(ripple);
+                    
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    // 添加離開動畫，然後再添加進入動畫
+                    this.classList.add('leaving');
+                    
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        ripple.remove();
+                        
+                        // 離開動畫結束後，移除離開類並重新添加進入動畫
+                        setTimeout(() => {
+                            this.classList.remove('leaving');
+                            this.style.animationName = 'cardEnter';
+                        }, 500); // 與cardLeave動畫時間相同
+                    }, 600);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    <div class="container">
+        <header>
+            <img src="https://i.postimg.cc/TwqChY5c/logistics-logo.jpg" alt="Logistics " class="profile-img">
+            <h1>Logistics</h1>
+            <p class="subtitle">Discord 机器人开发｜自动化专家</p>
+        </header>
+        
+        <section id="about">
+            <h2>关于我</h2>
+            <p class="about-text">
+                我是一名专注于工作流程自动化的技术架构师，拥有丰富的 Python、AutoHotkey、VBS 及 Discord 机器人开发经验。
+            </p>
+            <p class="about-text">
+                我的工作重点在于设计模块化且可定制的系统，融合精准的定时控制、音效与语音通知，以及即时用户反馈。
+            </p>
+            <p class="about-text">
+                我以打造能减少操作摩擦、提升多平台清晰度的工具为傲。
+            </p>
+            <p class="about-text">
+                除了编写脚本，我也具备强大的组织和问题解决能力，能将复杂需求结构化，转化为可执行且可扩展的解决方案。
+            </p>
+            <p class="about-text">
+                我特别热衷于社区参与——创造温馨的新手引导体验、动态内容发布，以及建立品牌互动，促进包容与信任。
+            </p>
+            <p class="about-text">
+                目前正在开发一套全自动化消息工具，结合间隔触发、语音警示与即时反馈逻辑，目标是提升协作环境中的协调与响应能力。
+            </p>
+            <p class="about-text">
+                我也正准备进一步担任社区运营领导角色，希望能贡献技术严谨度与以用户为中心的思维。
+            </p>
+        </section>
+        
+        <section id="skills">
+            <h2>我加入的团队／职位</h2>
+            <p>点击按钮加入服务器</p>
+            <div class="skills-container">
+                <a href="https://discord.com/invite/3BRBqs2vCC" target="_blank" class="skill">旭日物流 - 活动经理</a>
+                <a href="https://discord.gg/fBzGEZMM2t" target="_blank" class="skill">TrafficOps Convoy Control - 创办人</a>
+                <a href="https://discord.gg/4bnB74TAAj" target="_blank" class="skill">Seper CC - 人事经理</a>
+                <a href="https://discord.gg/gbu56hH2" target="_blank" class="skill">SunRise Event - 活动组实习生</a>
+                <a href="https://discord.gg/WNj8hJQhw7" target="_blank" class="skill">NextGen Convoy Control - 交管团队</a>
+                <a href="https://discord.gg/csHtMBajhm" target="_blank" class="skill">Vanguard Convoy Control - 交管团队</a>
+                <a href="https://discord.gg/mEn57z5DVB" target="_blank" class="skill">Marking Event - 活动主管实习生</a>
+                <a href="https://discord.gg/6qfsbDDKkV" target="_blank" class="skill">DriftPath Events - 活动组</a>
+                <a href="https://discord.gg/yFsshZ7Z6V" target="_blank" class="skill">KiKA Development - 开发团队</a>
+            </div>
+        </section>
+        
+        <section id="experience">
+            <h2>工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">我的VTC</div>
+                    <p>担任活动经理的经验。</p>
+                    <p>管理旭日物流活动，包括活动规划、执行和评估。</p>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024/07/21 ~ 2024/10/19</div>
+                    <div class="timeline-title">旭日物流 - 活动经理</div>
+                    <p>管理旭日物流活动，包括活动规划、执行和评估。</p>
+                </div>
+            </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">我的交管团队</div>
+                    <p>我在各个交管团队的历程。</p>
+
+                    <div class="timeline-item">
+                    <div class="timeline-date">2025/09/14 创办 TrafficOps Convoy Control</div>
+                    <div class="timeline-title">TrafficOps Convoy Control 创办人</div>
+                    <p>专注于活动规划、执行和评估。</p>
+                    <p>管理 TrafficOps Convoy Control 活动，包括活动规划、执行和评估。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024/10/19 加入 SuperCC</div>
+                    <div class="timeline-title">Seper CC 人事经理</div>
+                    <p>公开成员 -> 车队管控 -> 人事实习生 -> 人事经理</p>
+                    <p>管理 Seper CC 的人事资源，包括员工招募、培训和发展。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025/02/22 加入 SunRise 活动</div>
+                    <div class="timeline-title">SunRise Event - 活动组实习生</div>
+                    <p>专注于活动规划、执行和评估。</p>
+                    <p>管理 SunRise 活动，包括活动规划、执行和评估。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025/03/22 加入 NextGen Convoy Control</div>
+                    <div class="timeline-title">NextGen Convoy Control - 交管</div>
+                    <p>NextGen Convoy Control 交管</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025/04/22 加入 Vanguard Convoy Control</div>
+                    <div class="timeline-title">Vanguard Convoy Control - 交管</div>
+                    <p>Vanguard Convoy Control 交管</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025/05/22 加入 Marking Event</div>
+                    <div class="timeline-title">Marking Event - 活动督导实习生</div>
+                    <p>管理 Marking Event 的活动，包括活动规划、执行和评估。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025/06/22 加入 DriftPath Events</div>
+                    <div class="timeline-title">DriftPath Events - 活动组</div>
+                    <p>管理 DriftPath Events 的活动，包括活动规划、执行和评估。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">我的开发历程</div>
+                <p>我在各类开发职位的历程。</p>
+            <div class="timeline-item">
+                <div class="timeline-date">2025/08/22 加入 KiKA Development</div>
+                <div class="timeline-title">KiKA Development - 开发团队</div>
+                <p>管理 KiKA Development 团队</p>
+            </div>
+        </div>
+        </section>
+        
+        <section id="contact">
+            <h2>联系我</h2>
+            <p class="section-subtitle">欢迎通过以下方式联系我</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div><a href="mailto:logisticswu6@gmail.com" class="contact-link">logisticswu6@gmail.com</a></div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-discord"></i></div>
+                    <div><a href="https://discord.com/users/logistics_56" target="_blank" class="contact-link">Discord：logistics_56</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-qq"></i></div>
+                    <div><a href="https://qm.qq.com/q/gpGYAelQvS" target="_blank" class="contact-link">QQ：3839414676</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                    <div><a href="https://www.instagram.com/logistics_meow._.stars?igsh=MTV3eXJmeDRudjZoag%3D%3D&utm_source=qr" class="contact-link">Instagram：@logistics_meow._.stars</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-weixin"></i></div>
+                    <div><a href="https://i.postimg.cc/J4gRqYJV/wechat.jpg" class="contact-link">微信：logisticswu6</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fa-brands fa-threads"></i></div>
+                    <div><a href="https://www.threads.com/@logistics_meow._.stars?igshid=NTc4MTIwNjQ2YQ==" target="_blank" class="contact-link">Threads：@logistics_meow._.stars</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-line"></i></div>
+                    <div><a href="https://line.me/ti/p/04jQXBtnP4" target="_blank" class="contact-link">Line：logistics._.553</a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div>时区 UTC+8</div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Logistics. 保留所有权利。</p>
+        </footer>
+    </div>
+</body>
+</html>
